@@ -1,6 +1,6 @@
 {
   "name": "wizaplace/json-decoder",
-  "description": "Enable to automatically throw an exception when json_decode() fails to decode a JSON",
+  "description": "Throw an exception when json_decode() fails to decode a JSON",
   "type": "library",
   "homepage": "https://github.com/wizaplace/json-decoder",
   "require-dev": {
@@ -25,7 +25,7 @@
       "Wizaplace\\Json\\": "src/"
     }
   },
-  "autoload-dev":  {
+  "autoload-dev": {
     "psr-4": {
       "Wizaplace\\Test\\": "tests/"
     }

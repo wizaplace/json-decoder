@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Wizaplace\Test\Decoder;
+namespace Wizaplace\Test;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Wizaplace\Json\Decoder\AbstractJsonDecoder;
