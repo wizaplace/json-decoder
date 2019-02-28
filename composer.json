@@ -22,8 +22,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Wizaplace\\Json\\": "src/",
-      "": "tests/"
+      "Wizaplace\\Json\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Wizaplace\\Test\\": "tests/"
     }
   }
 }

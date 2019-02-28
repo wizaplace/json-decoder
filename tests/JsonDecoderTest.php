@@ -7,6 +7,8 @@
 
 declare(strict_types=1);
 
+namespace Wizaplace\Test;
+
 use PHPUnit\Framework\TestCase;
 
 class JsonDecoderTest extends TestCase
