@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Wizaplace\Json\Exception;
+namespace Wizaplace\JsonDecoder\Exception;
 
 class JsonDecodeNullException extends JsonException
 {

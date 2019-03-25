@@ -7,41 +7,32 @@
 
 declare(strict_types=1);
 
-namespace Wizaplace\Json\Decoder;
+namespace Wizaplace\JsonDecoder\Decoder;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Wizaplace\Json\Exception\JsonDecodeException;
-use Wizaplace\Json\Exception\JsonDecodeNullException;
+use Wizaplace\JsonDecoder\{
+    Exception\JsonDecodeException,
+    Exception\JsonDecodeNullException
+};
 
 abstract class AbstractJsonDecoder
 {
-    /**
-     * @var bool
-     */
+    /** @var bool */
     private $allowNull = true;
-    /**
-     * @var bool
-     */
+
+    /** @var bool */
     private $associative = false;
-    /**
-     * @var int
-     */
+
+    /** @var int */
     private $depth = 512;
-    /**
-     * @var bool
-     */
+
+    /** @var bool */
     private $bigIntAsString = false;
-    /**
-     * @var bool
-     */
+
+    /** @var bool */
     private $objectAsArray = false;
 
-    /**
-     * @param string $json
-     * @return mixed
-     * @throws JsonDecodeException
-     * @throws JsonDecodeNullException
-     */
+    /** @return mixed */
     public function decode(string $json)
     {
         $options = 0;
@@ -79,6 +70,7 @@ abstract class AbstractJsonDecoder
     protected function setAllowNull(bool $allowNull): self
     {
         $this->allowNull = $allowNull;
+
         return $this;
     }
 
@@ -90,6 +82,7 @@ abstract class AbstractJsonDecoder
     protected function setAssociative(bool $associative): self
     {
         $this->associative = $associative;
+
         return $this;
     }
 
@@ -101,6 +94,7 @@ abstract class AbstractJsonDecoder
     protected function setDepth(int $depth): self
     {
         $this->depth = $depth;
+
         return $this;
     }
 
@@ -112,6 +106,7 @@ abstract class AbstractJsonDecoder
     protected function setBigIntAsString(bool $bigIntAsString): self
     {
         $this->bigIntAsString = $bigIntAsString;
+
         return $this;
     }
 
@@ -123,6 +118,7 @@ abstract class AbstractJsonDecoder
     protected function setObjectAsArray(bool $objectAsArray): self
     {
         $this->objectAsArray = $objectAsArray;
+
         return $this;
     }
 

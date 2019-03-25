@@ -7,26 +7,19 @@
 
 declare(strict_types=1);
 
-namespace Wizaplace\Test;
+namespace Wizaplace\JsonDecoder\Test;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Wizaplace\Json\Decoder\AbstractJsonDecoder;
+use Wizaplace\JsonDecoder\Decoder\AbstractJsonDecoder;
 
 class JsonDecoder extends AbstractJsonDecoder
 {
-    public function __construct()
+    public function __construct(int $depth = 512, bool $allowNull = true)
     {
-        $this->setAssociative(true);
-    }
-
-    public function setAllowNull(bool $allow): parent
-    {
-        return parent::setAllowNull($allow);
-    }
-
-    public function setDepth(int $depth): parent
-    {
-        return parent::setDepth($depth);
+        $this
+            ->setAssociative(true)
+            ->setDepth($depth)
+            ->setAllowNull($allowNull);
     }
 
     protected function configureDecodedJson(OptionsResolver $optionsResolver): parent
