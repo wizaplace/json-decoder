@@ -7,9 +7,13 @@
 
 declare(strict_types=1);
 
-namespace Wizaplace\Test;
+namespace Wizaplace\JsonDecoder\Test;
 
 use PHPUnit\Framework\TestCase;
+use Wizaplace\JsonDecoder\{
+    Exception\JsonDecodeException,
+    Exception\JsonDecodeNullException
+};
 
 class JsonDecoderTest extends TestCase
 {
@@ -23,18 +27,16 @@ class JsonDecoderTest extends TestCase
 
     public function testDepth(): void
     {
-        $this->expectException(\Wizaplace\Json\Exception\JsonDecodeException::class);
+        $this->expectException(JsonDecodeException::class);
         static::assertEquals(
             $this->getExpectedArray(),
-            (new JsonDecoder())
-                ->setDepth(1)
-                ->decode($this->createJson())
+            (new JsonDecoder(1))->decode($this->createJson())
         );
     }
 
     public function testSyntaxError(): void
     {
-        $this->expectException(\Wizaplace\Json\Exception\JsonDecodeException::class);
+        $this->expectException(JsonDecodeException::class);
         (new JsonDecoder())->decode('{');
     }
 
@@ -48,12 +50,10 @@ class JsonDecoderTest extends TestCase
 
     public function testDisallowNull(): void
     {
-        $this->expectException(\Wizaplace\Json\Exception\JsonDecodeNullException::class);
+        $this->expectException(JsonDecodeNullException::class);
         static::assertEquals(
             null,
-            (new JsonDecoder())
-                ->setAllowNull(false)
-                ->decode('null')
+            (new JsonDecoder(512, false))->decode('null')
         );
     }
 
