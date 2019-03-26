@@ -32,8 +32,11 @@ abstract class AbstractJsonDecoder
     /** @var bool */
     private $objectAsArray = false;
 
+    /** @var bool */
+    private $validateDecodedData = true;
+
     /** @return mixed */
-    public function decode(string $json)
+    public function decode(string $json, bool $validateDecodedData = null)
     {
         $options = 0;
         if ($this->isBigIntAsString()) {
@@ -53,7 +56,13 @@ abstract class AbstractJsonDecoder
             throw new JsonDecodeNullException($json);
         }
 
-        if (is_array($return)) {
+        if (
+            is_array($return)
+            && (
+                (is_bool($validateDecodedData) && $validateDecodedData)
+                || (is_bool($validateDecodedData) === false && $this->isValidateDecodedData())
+            )
+        ) {
             $optionResolver = new OptionsResolver();
             $this->configureDecodedJson($optionResolver);
             $optionResolver->resolve($return);
@@ -125,5 +134,17 @@ abstract class AbstractJsonDecoder
     protected function isObjectAsArray(): bool
     {
         return $this->objectAsArray;
+    }
+
+    protected function setValidateDecodedData(bool $validate): self
+    {
+        $this->validateDecodedData = $validate;
+
+        return $this;
+    }
+
+    protected function isValidateDecodedData(): bool
+    {
+        return $this->validateDecodedData;
     }
 }
